@@ -1,25 +1,45 @@
-﻿namespace Application.Services.Authentication
+﻿using Application.Common.Interfaces.Authentication;
+
+namespace Application.Services.Authentication
 {
     public class AuthenticationService : IAuthenticationService
     {
-        public AuthenticationResult Login(string Email, string Password)
+        private readonly IJwtTokenGenerator _jwtTokenGenerator;
+
+        public AuthenticationService(IJwtTokenGenerator jwtTokenGenerator)
         {
+            _jwtTokenGenerator = jwtTokenGenerator;
+        }
+
+        public AuthenticationResult Login(string email, string password)
+        {
+            
+
             return new AuthenticationResult(
                 Guid.NewGuid(),
                 "firstname",
                 "lastname",
-                Email,
+                email,
                 "token");
         }
 
-        public AuthenticationResult Register(string FirstName, string LastName, string Email, string Password)
+        public AuthenticationResult Register(string firstName, string lastName, string email, string password)
         {
+
+            //Check if user already exists
+
+            //Create user (generate unique id)
+            var userId = Guid.NewGuid();
+
+            //Create JWT token
+            var token = _jwtTokenGenerator.GeneratorToken(userId, firstName, lastName);
+
             return new AuthenticationResult(
                 Guid.NewGuid(),
-                FirstName,
-                LastName,
-                Email,
-                "token");
+                firstName,
+                lastName,
+                email,
+                token);
         }
     }
 }

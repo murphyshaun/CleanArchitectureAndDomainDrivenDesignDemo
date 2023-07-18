@@ -25,11 +25,11 @@ namespace Api.Controllers
                 registerRequest.Password);
 
             var response = new AuthenticationResponse(
-                authResult.Id,
-                authResult.FirstName,
-                authResult.LastName,
-                authResult.Email,
-                authResult.Token
+                authResult.id,
+                authResult.firstName,
+                authResult.lastName,
+                authResult.email,
+                authResult.token
                 );
 
             return Ok(response);
@@ -43,11 +43,11 @@ namespace Api.Controllers
                 loginRequest.Password);
 
             var response = new AuthenticationResponse(
-                authResult.Id,
-                authResult.FirstName,
-                authResult.LastName,
-                authResult.Email,
-                authResult.Token
+                authResult.id,
+                authResult.firstName,
+                authResult.lastName,
+                authResult.email,
+                authResult.token
                 );
 
             return Ok(response);

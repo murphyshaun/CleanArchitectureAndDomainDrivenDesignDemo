@@ -3,13 +3,13 @@
     public interface IAuthenticationService
     {
         AuthenticationResult Login(
-            string Email,
-            string Password);
+            string email,
+            string password);
 
         AuthenticationResult Register(
-            string FirstName,
-            string LastName,
-            string Email,
-            string Password);
+            string firstName,
+            string lastName,
+            string email,
+            string password);
     }
 }
