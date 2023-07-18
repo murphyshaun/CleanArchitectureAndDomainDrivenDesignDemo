@@ -40,7 +40,7 @@ namespace Application.Services.Authentication
         {
             //Check if user already exists
             if (_userRepository.GetUserByEmail(email) is not null)
-                throw new Exception("User with give email already exists.");
+                throw new Exception("User with given email already exists.");
 
             //Create user (generate unique id) & Persist to DB
             var user = new User

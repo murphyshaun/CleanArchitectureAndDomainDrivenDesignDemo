@@ -1,4 +1,5 @@
-﻿using Application.Services.Authentication;
+﻿using Api.Filters;
+using Application.Services.Authentication;
 using Contracts.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,6 +7,7 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[ErrorHandlingFilter]
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthenticationService _authenticationService;
