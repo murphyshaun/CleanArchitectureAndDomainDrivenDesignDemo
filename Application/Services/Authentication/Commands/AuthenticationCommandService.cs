@@ -1,15 +1,17 @@
-﻿using Application.Common.Interfaces.Authentication;
+﻿using Application.Common.Errors;
+using Application.Common.Interfaces.Authentication;
 using Application.Common.Interfaces.Persistence;
+using Application.Services.Authentication.Common;
 using Domain.Entities;
 
-namespace Application.Services.Authentication
+namespace Application.Services.Authentication.Commands
 {
-    public class AuthenticationService : IAuthenticationService
+    public class AuthenticationCommandService : IAuthenticationCommandService
     {
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
         private readonly IUserRepository _userRepository;
 
-        public AuthenticationService(
+        public AuthenticationCommandService(
             IJwtTokenGenerator jwtTokenGenerator,
             IUserRepository userRepository)
         {
@@ -17,30 +19,15 @@ namespace Application.Services.Authentication
             _userRepository = userRepository;
         }
 
-        public AuthenticationResult Login(string email, string password)
-        {
-            //Validate the user exists
-            if (_userRepository.GetUserByEmail(email) is not User user)
-                throw new Exception("User with given email does not exists.");
-
-
-            //Validate the password is correct
-            if(user.Password != password)
-                throw new Exception("Invalid password.");
-
-            //Create JWT token
-            var token = _jwtTokenGenerator.GeneratorToken(user);
-
-            return new AuthenticationResult(
-                user,
-                token);
-        }
-
         public AuthenticationResult Register(string firstName, string lastName, string email, string password)
         {
             //Check if user already exists
             if (_userRepository.GetUserByEmail(email) is not null)
-                throw new Exception("User with given email already exists.");
+            {
+                //throw new Exception("User with given email already exists.");
+                throw new DuplicateEmailExeption();
+
+            }
 
             //Create user (generate unique id) & Persist to DB
             var user = new User

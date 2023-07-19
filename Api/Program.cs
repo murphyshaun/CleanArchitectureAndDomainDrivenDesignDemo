@@ -1,4 +1,4 @@
-﻿using Api.Errors;
+﻿using Api.Common.Errors;
 using Api.Filters;
 using Api.Middlewares;
 using Application;

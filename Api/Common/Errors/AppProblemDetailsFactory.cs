@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
 
-namespace Api.Errors
+namespace Api.Common.Errors
 {
     public class AppProblemDetailsFactory : ProblemDetailsFactory
     {
@@ -49,7 +49,7 @@ namespace Api.Errors
 
             };
 
-            if(title != null)
+            if (title != null)
             {
                 //For validation problem details, don't overwrite the default title with null.
                 problemDetails.Title = title;
@@ -64,7 +64,7 @@ namespace Api.Errors
         {
             problemDetails.Status ??= statusCode;
 
-            if(_options.ClientErrorMapping.TryGetValue(statusCode, out var clientErrorData))
+            if (_options.ClientErrorMapping.TryGetValue(statusCode, out var clientErrorData))
             {
                 problemDetails.Title ??= clientErrorData.Title;
                 problemDetails.Type ??= clientErrorData.Link;
@@ -72,7 +72,7 @@ namespace Api.Errors
 
             var traceId = Activity.Current?.Id ?? httpContext?.TraceIdentifier;
 
-            if(traceId != null)
+            if (traceId != null)
             {
                 problemDetails.Extensions["traceId"] = traceId;
             }
