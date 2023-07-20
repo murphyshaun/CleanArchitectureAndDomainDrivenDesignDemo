@@ -4,8 +4,8 @@ namespace Application.Common.Errors
 {
     public interface IServiceException
     {
-        HttpStatusCode StatusCode { get; }
+        HttpStatusCode StatusCode { get; set; }
 
-        string ErrorMessage { get; }
+        string ErrorMessage { get; set; }
     }
 }

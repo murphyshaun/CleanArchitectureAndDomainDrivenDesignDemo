@@ -29,3 +29,5 @@ The fundamental difference is that in CQRS objects are split into two objects, o
 
 
 # Object Mapping - Mapster (~ AutoMapper)
+
+# Validation Behavior | MediaR + FluentValidation

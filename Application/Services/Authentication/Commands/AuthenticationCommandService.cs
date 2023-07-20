@@ -25,7 +25,7 @@ namespace Application.Services.Authentication.Commands
             if (_userRepository.GetUserByEmail(email) is not null)
             {
                 //throw new Exception("User with given email already exists.");
-                throw new DuplicateEmailExeption();
+                throw new ValidationExeption();
 
             }
 

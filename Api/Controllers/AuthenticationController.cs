@@ -1,5 +1,5 @@
-﻿using Application.Authentication.Commands.Queries.Login;
-using Application.Authentication.Commands.Register;
+﻿using Application.Authentication.Commands.Register;
+using Application.Authentication.Queries.Login;
 using Contracts.Authentication;
 using MapsterMapper;
 using MediatR;

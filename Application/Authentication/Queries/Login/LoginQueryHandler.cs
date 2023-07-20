@@ -2,7 +2,7 @@
 using Application.Services.Authentication.Queries;
 using MediatR;
 
-namespace Application.Authentication.Commands.Queries.Login
+namespace Application.Authentication.Queries.Login
 {
     public class LoginQueryHandler : IRequestHandler<LoginQuery, AuthenticationResult>
     {
