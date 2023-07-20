@@ -26,3 +26,6 @@ The fundamental difference is that in CQRS objects are split into two objects, o
 ```
 2. MediatR + Mediator Pattern
 3. Split by Feature & Clean Architecture
+
+
+# Object Mapping - Mapster (~ AutoMapper)

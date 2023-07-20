@@ -1,32 +1,14 @@
-﻿using Api.Common.Errors;
-using Api.Filters;
-using Api.Middlewares;
+﻿using Api;
 using Application;
 using Infrastructure;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services
+        .AddPresentation()
         .AddApplicationService()
         .AddInfrastructureService(builder.Configuration);
-
-
-    builder.Services.AddControllers();
-
-    //use ErrorHandlingFilterAttribute
-    //builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>());
-
-    //ErrorsController
-    builder.Services.AddSingleton<ProblemDetailsFactory, AppProblemDetailsFactory>();
-
-    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
 }
-
-
 
 var app = builder.Build();
 
