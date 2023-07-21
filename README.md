@@ -53,3 +53,8 @@ Good indicators that an entity should be an aggregate root:			|	Các chỉ số 
 
 <img src="./Images/Domain.JPG"/>
 <img src="./Images/Aggregates.JPG"/>
+
+# Domain Layer Structure & Skeleton
+<img src="./Images/DomainStructure.JPG"/>
+<img src="./Images/DomainStructureDetail.JPG"/>
+

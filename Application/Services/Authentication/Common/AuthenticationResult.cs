@@ -1,4 +1,4 @@
-﻿using Domain.Entities;
+﻿using Domain.User;
 
 namespace Application.Services.Authentication.Common
 {

@@ -2,7 +2,7 @@
 using Application.Common.Interfaces.Authentication;
 using Application.Common.Interfaces.Persistence;
 using Application.Services.Authentication.Common;
-using Domain.Entities;
+using Domain.User;
 
 namespace Application.Services.Authentication.Queries
 {
