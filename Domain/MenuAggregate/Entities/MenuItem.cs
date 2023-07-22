@@ -1,7 +1,7 @@
 ﻿using Domain.Common.Models;
-using Domain.Menu.ValueObjects;
+using Domain.MenuAggregate.ValueObjects;
 
-namespace Domain.Menu.Entities
+namespace Domain.MenuAggregate.Entities
 {
     public class MenuItem : Entity<MenuItemId>
     {

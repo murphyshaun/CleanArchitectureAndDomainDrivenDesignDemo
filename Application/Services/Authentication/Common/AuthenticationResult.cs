@@ -1,4 +1,4 @@
-﻿using Domain.User;
+﻿using Domain.UserAggregate;
 
 namespace Application.Services.Authentication.Common
 {

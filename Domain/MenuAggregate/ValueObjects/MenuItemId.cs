@@ -1,6 +1,6 @@
 ﻿using Domain.Common.Models;
 
-namespace Domain.Menu.ValueObjects
+namespace Domain.MenuAggregate.ValueObjects
 {
     public sealed class MenuItemId : ValueObject
     {

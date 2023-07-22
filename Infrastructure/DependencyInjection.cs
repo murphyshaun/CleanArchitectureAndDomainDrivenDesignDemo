@@ -17,15 +17,26 @@ namespace Infrastructure
     {
         public static IServiceCollection AddInfrastructureService(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddAuthen(configuration);
+            services
+                .AddAuthen(configuration)
+                .AddPersistance();
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            
             return services;
         }
 
-        public static void AddAuthen(
-            this IServiceCollection services, 
-            IConfiguration configuration)
+        public static IServiceCollection AddPersistance(
+            this IServiceCollection services)
+        {
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IMenuRepository, MenuRepository>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddAuthen(
+        this IServiceCollection services,
+        IConfiguration configuration)
         {
             var jwtSettings = new JwtSettings();
             configuration.Bind("JwtSettings", jwtSettings);
@@ -47,6 +58,8 @@ namespace Infrastructure
                     IssuerSigningKey = new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(jwtSettings.SecretKey)),
                 });
+
+            return services;
         }
     }
 }

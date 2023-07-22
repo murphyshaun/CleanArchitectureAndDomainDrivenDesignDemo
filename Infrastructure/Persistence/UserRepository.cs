@@ -1,5 +1,5 @@
 ﻿using Application.Common.Interfaces.Persistence;
-using Domain.User;
+using Domain.UserAggregate;
 
 namespace Infrastructure.Persistence
 {

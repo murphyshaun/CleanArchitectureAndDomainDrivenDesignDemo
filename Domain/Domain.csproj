@@ -16,4 +16,8 @@
     <None Include="Common\Errors\Errors.User.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Docs\Api\" />
+  </ItemGroup>
+
 </Project>

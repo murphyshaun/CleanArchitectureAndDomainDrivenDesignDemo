@@ -1,17 +1,17 @@
 ﻿using Domain.Common.Models;
 
-namespace Domain.MenuReview.ValueObjects
+namespace Domain.MenuAggregate.ValueObjects
 {
-    public sealed class MenuReviewId : ValueObject
+    public sealed class MenuSectionId : ValueObject
     {
         public Guid Value { get; }
 
-        private MenuReviewId(Guid value)
+        private MenuSectionId(Guid value)
         {
             Value = value;
         }
 
-        public static MenuReviewId CreateUnique()
+        public static MenuSectionId CreateUnique()
         {
             return new(Guid.NewGuid());
         }

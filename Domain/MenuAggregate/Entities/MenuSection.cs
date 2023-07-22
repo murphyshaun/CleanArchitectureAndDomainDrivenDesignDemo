@@ -1,7 +1,7 @@
 ﻿using Domain.Common.Models;
-using Domain.Menu.ValueObjects;
+using Domain.MenuAggregate.ValueObjects;
 
-namespace Domain.Menu.Entities
+namespace Domain.MenuAggregate.Entities
 {
     public sealed class MenuSection : Entity<MenuSectionId>
     {
@@ -13,15 +13,16 @@ namespace Domain.Menu.Entities
 
         public IReadOnlyList<MenuItem> MenuItems => _menuItems.AsReadOnly();
 
-        private MenuSection(MenuSectionId id, string name, string description) : base(id)
+        private MenuSection(MenuSectionId id, string name, string description, List<MenuItem> menuItems) : base(id)
         {
             Name = name;
             Description = description;
+            _menuItems = menuItems;
         }
 
-        public static MenuSection Create(string name, string description)
+        public static MenuSection Create(string name, string description, List<MenuItem> menuItems)
         {
-            return new(MenuSectionId.CreateUnique(), name, description);
+            return new(MenuSectionId.CreateUnique(), name, description, menuItems);
         }
     }
 }

@@ -2,7 +2,7 @@
 using Application.Common.Interfaces.Authentication;
 using Application.Common.Interfaces.Persistence;
 using Application.Services.Authentication.Common;
-using Domain.User;
+using Domain.UserAggregate;
 
 namespace Application.Services.Authentication.Commands
 {
