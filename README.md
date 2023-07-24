@@ -65,9 +65,13 @@ Good indicators that an entity should be an aggregate root:			|	Các chỉ số 
 4. SQL Server on a Docker container
 5. Migrations and more using the EF Core CLI
 6. VSCode + SQL Server
-`sql server run in docker`
-```docker pull mcr.microsoft.com/mssql/server:2022-latest
-docker run -e 'HOMEBREW_NO_ENV_FILTERING=1' -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=123456Aa@' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest```
+
+## sql server run in docker`
+
+```
+docker pull mcr.microsoft.com/mssql/server:2022-latest
+docker run -e 'HOMEBREW_NO_ENV_FILTERING=1' -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=123456Aa@' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
+```
 
 ## What's the big deal
 
