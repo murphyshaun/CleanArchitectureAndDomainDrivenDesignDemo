@@ -16,39 +16,37 @@ namespace Domain.MenuAggregate
 
         private readonly List<MenuReviewId> _menuReviewIds = new();
 
-        public string Name { get; }
+        public string Name { get; private set; }
 
-        public string Description { get; }
+        public string Description { get; private set; }
 
-        public AverageRating AverageRating { get; }
+        public AverageRating AverageRating { get; private set; }
 
         public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly();
 
-        public HostId HostId { get; }
+        public HostId HostId { get; private set; }
 
         public IReadOnlyList<DinnerId> DinnerIds => _dinnerIds.AsReadOnly();
 
         public IReadOnlyList<MenuReviewId> MenuReviewIds => _menuReviewIds.AsReadOnly();
 
-        public DateTime CreatedDateTime { get; }
+        public DateTime CreatedDateTime { get; private set; }
 
-        public DateTime UpdatedDateTime { get; }
+        public DateTime UpdatedDateTime { get; private set; }
 
         private MenuModel(
             MenuId id,
             string name,
             string description,
             List<MenuSection>? sections,
-            HostId hostId,
-            DateTime createdDateTime,
-            DateTime updatedDateTime) : base(id)
+            AverageRating averageRating,
+            HostId hostId) : base(id)
         {
             Name = name;
             Description = description;
             HostId = hostId;
-            CreatedDateTime = createdDateTime;
-            UpdatedDateTime = updatedDateTime;
             _sections = sections;
+            AverageRating = averageRating;
         }
 
         public static MenuModel Create(
@@ -61,10 +59,9 @@ namespace Domain.MenuAggregate
                 MenuId.CreateUnique(),
                 name,
                 description,
-                sections,
-                hostId,
-                DateTime.UtcNow,
-                DateTime.UtcNow);
+                sections ?? new(),
+                AverageRating.CreateNew(),
+                hostId);
         }
     }
 }

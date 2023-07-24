@@ -3,8 +3,10 @@ using Application.Common.Interfaces.Persistence;
 using Application.Common.Services;
 using Infrastructure.Authentication;
 using Infrastructure.Persistence;
+using Infrastructure.Persistence.Repositories;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -19,15 +21,20 @@ namespace Infrastructure
         {
             services
                 .AddAuthen(configuration)
-                .AddPersistance();
+                .AddPersistance(configuration);
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
-            
+
             return services;
         }
 
         public static IServiceCollection AddPersistance(
-            this IServiceCollection services)
+            this IServiceCollection services,
+            IConfiguration configuration)
         {
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                    b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
+
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();
 

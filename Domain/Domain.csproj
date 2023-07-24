@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
     <None Include="Common\Errors\Errors.Authentication.cs" />
     <None Include="Common\Errors\Errors.User.cs" />
   </ItemGroup>

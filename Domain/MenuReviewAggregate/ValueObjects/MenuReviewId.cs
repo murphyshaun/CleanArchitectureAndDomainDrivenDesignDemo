@@ -4,7 +4,7 @@ namespace Domain.MenuAggregateReview.ValueObjects
 {
     public sealed class MenuReviewId : ValueObject
     {
-        public Guid Value { get; }
+        public Guid Value { get; set; }
 
         private MenuReviewId(Guid value)
         {

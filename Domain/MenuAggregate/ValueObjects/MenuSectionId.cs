@@ -4,7 +4,7 @@ namespace Domain.MenuAggregate.ValueObjects
 {
     public sealed class MenuSectionId : ValueObject
     {
-        public Guid Value { get; }
+        public Guid Value { get; set; }
 
         private MenuSectionId(Guid value)
         {
@@ -19,6 +19,11 @@ namespace Domain.MenuAggregate.ValueObjects
         public override IEnumerable<object> GetEqualityComponents()
         {
             yield return Value;
+        }
+
+        public static MenuSectionId Create(Guid value)
+        {
+            return new MenuSectionId(value);
         }
     }
 }

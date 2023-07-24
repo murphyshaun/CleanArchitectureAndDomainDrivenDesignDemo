@@ -12,7 +12,7 @@ namespace Application.Menus.Commands
 
             RuleFor(x => x.Description)
                 .NotEmpty()
-                .MaximumLength(200);
+                .MaximumLength(100);
         }
     }
 }

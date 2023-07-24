@@ -5,11 +5,11 @@ namespace Domain.MenuAggregate.Entities
 {
     public class MenuItem : Entity<MenuItemId>
     {
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public string Description { get; }
+        public string Description { get; set; }
 
-        private MenuItem(MenuItemId id, string name, string description) : base(id)
+        private MenuItem(string name, string description, MenuItemId? id = null) : base(id ?? MenuItemId.CreateUnique())
         {
             Name = name;
             Description = description;
@@ -17,7 +17,7 @@ namespace Domain.MenuAggregate.Entities
 
         public static MenuItem Create(string name, string description)
         {
-            return new(MenuItemId.CreateUnique(), name, description);
+            return new(name, description);
         }
     }
 }

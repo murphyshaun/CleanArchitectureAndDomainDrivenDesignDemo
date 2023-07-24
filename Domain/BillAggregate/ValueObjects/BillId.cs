@@ -4,7 +4,7 @@ namespace Domain.BillAggregate.ValueObjects
 {
     public sealed class BillId : ValueObject
     {
-        public Guid Value { get; }
+        public Guid Value { get; set; }
 
         private BillId(Guid value)
         {
