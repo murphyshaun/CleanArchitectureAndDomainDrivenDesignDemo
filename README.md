@@ -1,40 +1,4 @@
-﻿# Global Error Handling
-1. Via middleware
-2. Via exception filter attribute
-3. Problem details
-4. Via error endpoint
-5. Custom problem details factory
-
-
-# Flow control
-1. Via exceptions
-2. Via OneOf
-3. Via FluentResults
-4. Via ErrorOr & Domain Error
-
-# CQRS + MediatR =
-1. CQS vs CQRS
-```
-CQS (Command Query Seperation):
-A command (procedure) does something but does not return a result.
-A query (function or attribute) returns a result but does not change the state.
-```
-
-```
-CQRS (Command query responsibility segregation):
-The fundamental difference is that in CQRS objects are split into two objects, one containing the Commands one containing the Queriess.
-```
-2. MediatR + Mediator Pattern
-3. Split by Feature & Clean Architecture
-
-
-# Object Mapping - Mapster (~ AutoMapper)
-
-# Validation Behavior | MediaR + FluentValidation
-
-# JWT Bearer Authentication
-
-# 3 Steps for Modeling a Complex Domain
+﻿# 3 Steps for Modeling a Complex Domain
 ```
 To recap:															|	Tóm lại:
 1. Identity Entities and treat each entity as an aggregate root		|	1. Xác định các Thực thể và coi mỗi thực thể là một gốc tổng hợp
@@ -158,8 +122,60 @@ Aggregate 2 {
  
  # Domain Events
  api: Create Menu Request
+ ```
  CreateMenu (MenusController) =>  _mediator.Send(command) => Handle (CreateMenuCommandHandler) =>
  => MenuModel.Create => Create (MenuModel) => menu.AddDomainEvent(new MenuCreated(menu)); => Handle (CreateMenuCommandHandler) => 
  => _menuRepository.Add(menuModel); = Add (MenuRepository) => _dbContext.SaveChanges(); => SavedChanges (PublishDomainEventsInterceptor) =>
  => PublishDomainEvents(PublishDomainEventsInterceptor) = await _mediator.Publish(domainEvent); => Handle(DummyHandler)
+ ```
  
+# Tests
+
+## AcceptanceTests
+
+## EndToEndTests
+
+## FunctionalTests
+
+## IntegrationTests
+
+## UnitTests
+
+
+
+# Global Error Handling
+1. Via middleware
+2. Via exception filter attribute
+3. Problem details
+4. Via error endpoint
+5. Custom problem details factory
+
+
+# Flow control
+1. Via exceptions
+2. Via OneOf
+3. Via FluentResults
+4. Via ErrorOr & Domain Error
+
+# CQRS + MediatR =
+1. CQS vs CQRS
+```
+CQS (Command Query Seperation):
+A command (procedure) does something but does not return a result.
+A query (function or attribute) returns a result but does not change the state.
+```
+
+```
+CQRS (Command query responsibility segregation):
+The fundamental difference is that in CQRS objects are split into two objects, one containing the Commands one containing the Queriess.
+```
+2. MediatR + Mediator Pattern
+3. Split by Feature & Clean Architecture
+
+
+# Object Mapping - Mapster (~ AutoMapper)
+
+# Validation Behavior | MediaR + FluentValidation
+
+# JWT Bearer Authentication
+
