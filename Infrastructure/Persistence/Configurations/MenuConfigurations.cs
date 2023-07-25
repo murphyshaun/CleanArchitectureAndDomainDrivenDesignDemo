@@ -35,7 +35,7 @@ namespace Infrastructure.Persistence.Configurations
             builder.Property(m => m.Description)
                 .HasMaxLength(100);
 
-            builder.HasOne(m => m.AverageRating);
+            builder.OwnsOne(m => m.AverageRating);
 
             builder.Property(m => m.HostId)
                 .HasConversion(
@@ -72,7 +72,7 @@ namespace Infrastructure.Persistence.Configurations
 
                     ib.WithOwner().HasForeignKey("MenuSectionId", "MenuId");
 
-                    sb.HasKey(nameof(MenuItem.Id) , "MenuSectionId", "MenuId");
+                    ib.HasKey(nameof(MenuItem.Id), "MenuSectionId", "MenuId");
 
                     ib.Property(i => i.Id)
                         .HasColumnName("MenuItemId")

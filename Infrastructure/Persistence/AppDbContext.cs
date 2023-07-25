@@ -1,23 +1,35 @@
-﻿using Domain.MenuAggregate;
+﻿using Domain.Common.Models;
+using Domain.MenuAggregate;
+using Infrastructure.Interceptors;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<MenuModel> Menus { get; set; }
+        private readonly PublishDomainEventsInterceptor _publishDomainEventsInterceptor;
+
+        public DbSet<MenuModel> Menus { get; set; } = null!;
 
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) 
+        public AppDbContext(DbContextOptions<AppDbContext> options, PublishDomainEventsInterceptor publishDomainEventsInterceptor) 
             : base(options)
         {
-            
+            _publishDomainEventsInterceptor = publishDomainEventsInterceptor;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+            modelBuilder
+                .Ignore<List<IDomainEvent>>()
+                .ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.AddInterceptors(_publishDomainEventsInterceptor);
+            base.OnConfiguring(optionsBuilder);
         }
     }
 }

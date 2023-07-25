@@ -2,9 +2,9 @@
 
 namespace Domain.HostAggregate.ValueObjects
 {
-    public sealed class HostId : ValueObject
+    public sealed class HostId : AggregateRootId<Guid>
     {
-        public Guid Value { get; set; }
+        public override Guid Value { get; protected set; }
 
         private HostId(Guid value)
         {

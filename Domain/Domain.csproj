@@ -12,13 +12,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
     <None Include="Common\Errors\Errors.Authentication.cs" />
     <None Include="Common\Errors\Errors.User.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Docs\Api\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
   </ItemGroup>
 
 </Project>

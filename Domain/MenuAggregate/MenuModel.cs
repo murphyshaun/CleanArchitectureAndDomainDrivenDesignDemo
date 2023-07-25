@@ -3,12 +3,13 @@ using Domain.Common.ValueObjects;
 using Domain.DinnerAggregate.ValueObjects;
 using Domain.HostAggregate.ValueObjects;
 using Domain.MenuAggregate.Entities;
+using Domain.MenuAggregate.Event;
 using Domain.MenuAggregate.ValueObjects;
 using Domain.MenuAggregateReview.ValueObjects;
 
 namespace Domain.MenuAggregate
 {
-    public sealed class MenuModel : AggregateRoot<MenuId>
+    public sealed class MenuModel : AggregateRoot<MenuId, Guid>
     {
         private readonly List<MenuSection> _sections = new();
 
@@ -55,13 +56,24 @@ namespace Domain.MenuAggregate
             string description,
             List<MenuSection>? sections)
         {
-            return new(
+            var menu = new MenuModel(
                 MenuId.CreateUnique(),
                 name,
                 description,
                 sections ?? new(),
                 AverageRating.CreateNew(),
                 hostId);
+
+            menu.AddDomainEvent(new MenuCreated(menu));
+
+            return menu;
+        }
+
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        private MenuModel()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        {
+            
         }
     }
 }

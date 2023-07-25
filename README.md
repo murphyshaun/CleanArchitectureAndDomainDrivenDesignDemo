@@ -37,8 +37,8 @@ The fundamental difference is that in CQRS objects are split into two objects, o
 # 3 Steps for Modeling a Complex Domain
 ```
 To recap:															|	Tóm lại:
-1. Identify Entities and treat each entity as an aggregate root		|	1. Xác định các Thực thể và coi mỗi thực thể là một gốc tổng hợp
-2. Identify relationships between the entities						|	2. Xác định mối quan hệ giữa các thực thể
+1. Identity Entities and treat each entity as an aggregate root		|	1. Xác định các Thực thể và coi mỗi thực thể là một gốc tổng hợp
+2. Identity relationships between the entities						|	2. Xác định mối quan hệ giữa các thực thể
 3. Merge aggregates if there are constraints						|	3. Hợp nhất các aggregate nếu có ràng buộc
 																	|
 Possible constraints:												|	Hạn chế có thể:
@@ -65,7 +65,7 @@ Good indicators that an entity should be an aggregate root:			|	Các chỉ số 
 4. SQL Server on a Docker container
 5. Migrations and more using the EF Core CLI
 6. VSCode + SQL Server
-
+`Parameterless`
 ## sql server run in docker`
 
 ```
@@ -144,9 +144,22 @@ Aggregate 2 {
 <img src="./Images/CompositeKeys.JPG"/>
 
 ### Surrogate Keys
-- A key of any type that is lives for the sole purpose of uniquely identify a record in a table.
+- A key of any type that is lives for the sole purpose of uniquely identity a record in a table.
 
 ### Owned Entity
  - "EF Core allows you to model entity types that can only ever appear on navigation properties of other entity types. 
  These are called owned entity types.
  The entity containing an owned entity type is its owner" --> Microsoft docs
+ 
+ 
+ # Domain-Drive Design & The Identity Paradox
+ 
+ ## 3 Reasons to Model Identity as a Value Object
+ 
+ # Domain Events
+ api: Create Menu Request
+ CreateMenu (MenusController) =>  _mediator.Send(command) => Handle (CreateMenuCommandHandler) =>
+ => MenuModel.Create => Create (MenuModel) => menu.AddDomainEvent(new MenuCreated(menu)); => Handle (CreateMenuCommandHandler) => 
+ => _menuRepository.Add(menuModel); = Add (MenuRepository) => _dbContext.SaveChanges(); => SavedChanges (PublishDomainEventsInterceptor) =>
+ => PublishDomainEvents(PublishDomainEventsInterceptor) = await _mediator.Publish(domainEvent); => Handle(DummyHandler)
+ 

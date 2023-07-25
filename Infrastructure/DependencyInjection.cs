@@ -2,6 +2,7 @@
 using Application.Common.Interfaces.Persistence;
 using Application.Common.Services;
 using Infrastructure.Authentication;
+using Infrastructure.Interceptors;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Repositories;
 using Infrastructure.Services;
@@ -35,6 +36,7 @@ namespace Infrastructure
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
 
+            services.AddScoped<PublishDomainEventsInterceptor>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();
 
