@@ -16,9 +16,9 @@ namespace Api.Common.Mapping
                 .Map(dest => dest, src => src.Request);
 
             config.NewConfig<MenuModel, MenuResponse>()
-                .Map(dest => dest.Id, src => src.Id.Value)
+                .Map(dest => dest.Id, src => src.Id.Value.ToString())
                 .Map(dest => dest.AverageRating, src => src.AverageRating.Value)
-                .Map(dest => dest.HostId, src => src.HostId.Value)
+                .Map(dest => dest.HostId, src => src.HostId.Value.ToString())
                 .Map(dest => dest.DinnerIds, src => src.DinnerIds.Select(dinnerId => dinnerId.Value))
                 .Map(dest => dest.MenuReviewIds, src => src.MenuReviewIds.Select(menuReviewId => menuReviewId.Value));
 
