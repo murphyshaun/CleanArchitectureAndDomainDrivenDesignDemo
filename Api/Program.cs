@@ -33,6 +33,8 @@ app.UseExceptionHandler("/error");
 
 app.UseHttpsRedirection();
 
+app.UseCors("CorsPolicy");
+
 app.UseAuthentication();
 app.UseAuthorization();
 
